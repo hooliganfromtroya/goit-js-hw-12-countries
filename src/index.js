@@ -31,7 +31,9 @@ const renderHtml = (html) => {
 }
 
 const responseHandler = (response) => {
-    const result = response.length > 1 ? createList(response) : createSimpleCountry(response);
+    const result = response.length > 1 
+        ? (response.length <= 10 && createList(response))
+        : createSimpleCountry(response);
     renderHtml(result);
     if (response.length > 10) {
         error({
